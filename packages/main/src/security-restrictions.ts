@@ -66,11 +66,11 @@ app.on('web-contents-created', (_, contents) => {
       callback(true);
     } else {
       callback(permissionGranted);
+      if (!permissionGranted && import.meta.env.DEV) {
+        console.warn(`${origin} requested permission for '${permission}', but was blocked.`);
+      }
     }
 
-    if (!permissionGranted && import.meta.env.DEV) {
-      console.warn(`${origin} requested permission for '${permission}', but was blocked.`);
-    }
   });
 
 
